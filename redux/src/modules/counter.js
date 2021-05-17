@@ -1,3 +1,5 @@
+///////////// Redux-thunk //////////
+////////////////////////////////////
 const INCREASE = "INCREASE";
 const DECREASE = "DECREASE";
 

@@ -1,28 +1,22 @@
 import React from "react";
-import {
-  Increase,
-  Decrease,
-  IncraseAsync,
-  DecreaseAsync,
-} from "../modules/counter";
-
+import { increaseAsync, decreaseAsync } from "../modules/counter2";
 import { useSelector, useDispatch } from "react-redux";
 
 function Counter() {
-  const number = useSelector((state) => state.counter);
+  const number = useSelector((state) => state.counter2);
   const dispatch = useDispatch();
 
   const onIncrease = () => {
-    dispatch(IncraseAsync());
+    dispatch(increaseAsync());
   };
 
   const onDecrease = () => {
-    dispatch(DecreaseAsync());
+    dispatch(decreaseAsync());
   };
 
   return (
     <div>
-      <h1>Redux-thunk</h1>
+      <h1>Redux-saga</h1>
       <h1>{number}</h1>
       <button onClick={onIncrease}>+1</button>
       <button onClick={onDecrease}>-1</button>
