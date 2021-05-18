@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector, useDisaptch } from "react-redux";
+import Post from "../components/Post";
 
 function Post({ postId }) {
   const { title, body } = post;
