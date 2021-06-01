@@ -4,12 +4,12 @@ import {
   Decrease,
   IncraseAsync,
   DecreaseAsync,
-} from "../modules/counter";
+} from "../modules/counterThunk";
 
 import { useSelector, useDispatch } from "react-redux";
 
 function Counter() {
-  const number = useSelector((state) => state.counter);
+  const number = useSelector((state) => state.counterThunk);
   const dispatch = useDispatch();
 
   const onIncrease = () => {

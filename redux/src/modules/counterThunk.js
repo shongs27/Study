@@ -24,7 +24,7 @@ export const DecreaseAsync = () => (dispatch, getState) => {
 
 const init = 0;
 
-export default function counter(state = init, action) {
+export default function counterThunk(state = init, action) {
   switch (action.type) {
     case INCREASE:
       return state + 1;

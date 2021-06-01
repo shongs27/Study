@@ -21,9 +21,10 @@ import { BrowserRouter } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
 const sagaMiddleware = createSagaMiddleware();
 
+//logger을 쓰려면 applyMiddleware 맨끝에 위치시킨다
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware, ReduxThunk, logger))
+  composeWithDevTools(applyMiddleware(sagaMiddleware, ReduxThunk))
 );
 
 sagaMiddleware.run(rootSaga);

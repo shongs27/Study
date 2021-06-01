@@ -2,14 +2,16 @@
 ////////////////////////////////////
 
 //redux-saga의 명령어 effects
-//delay는 기다려라, put는 dispatch하라
 import {
   delay,
   put,
+  call,
+  fork,
   takeEvery,
   takeLatest,
   takeLeading,
 } from "redux-saga/effects";
+//delay는 기다려라, put는 dispatch하라, call은 동기호출, fork는 비동기호출
 
 //액션 타입
 const INCREASE2 = "INCREASE2";
@@ -26,23 +28,25 @@ export const decreaseAsync = () => ({ type: DECREASE_ASYNC });
 //generator함수는 saga
 function* increaseSaga() {
   yield delay(1000);
-  yield put(increase2());
+  const result = yield put(increase2());
+  console.log(result);
+  // yield put(increase2());
 }
 function* decreaseSaga() {
   yield delay(1000);
   yield put(decrease2());
 }
 //root saga를 위해 내보내준다
-export function* counterSaga() {
-  //dispatch 들어오면 다 실행한다
+export function* eventSaga() {
+  //dispatch 들어오면 다 실행한다 / while(true) {} 문과 비슷
   yield takeEvery(INCREASE_ASYNC, increaseSaga);
-  //마지막 요청만 기존꺼 취소 하고 실행
+  //마지막 요청만 실행, 기존꺼 취소 하고 실행
   yield takeLatest(DECREASE_ASYNC, decreaseSaga);
 }
 
 const init = 0;
 
-export default function counter2(state = init, action) {
+export default function counterSaga(state = init, action) {
   switch (action.type) {
     case INCREASE2:
       return state + 1;

@@ -1,15 +1,15 @@
 import { combineReducers } from "redux";
 import posts from "./posts";
-import counter from "./counter";
-import counter2, { counterSaga } from "./counter2";
+import counterThunk from "./counterThunk";
+import counterSaga, { eventSaga } from "./counterSaga";
 import { all } from "redux-saga/effects";
 
 //root reducer
-const rootReducer = combineReducers({ counter, counter2, posts });
+const rootReducer = combineReducers({ counterThunk, counterSaga, posts });
 
 //root saga
 export function* rootSaga() {
-  yield all([counterSaga()]);
+  yield all([eventSaga()]);
 }
 
 export default rootReducer;
