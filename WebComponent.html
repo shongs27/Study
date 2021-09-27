@@ -1,0 +1,39 @@
+<!-- Lit 라이브러리를 쓰면 문법을 간단하게 쓸 수 있다 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <custom-input name="123"></custom-input>
+    <script>
+      class meMake extends HTMLElement {
+        connectedCallback() {
+          this.render();
+        }
+        render() {
+          let 라벨 = document.createElement("label");
+          라벨.innerHTML = "이름을 입력하세요";
+          this.appendChild(라벨);
+          let 인풋 = document.createElement("input");
+          this.appendChild(인풋);
+        }
+
+        static get observedAttributes() {
+          return ["name"]; //[]가 바뀌는지 확인 (react-hook기능)
+          //바뀌면 재렌더링
+        }
+
+        attributeChangedCallback() {
+          this.render();
+        }
+      }
+
+      customElements.define("custom-input", meMake);
+    </script>
+  </body>
+</html>
